@@ -16,6 +16,7 @@ function spoofPlatform(platform) {
 	const script = document.createElement('script');
 	script.appendChild(injectedCode);
 	document.head.appendChild(script);
+	document.head.removeChild(script);
 }
 
 function main() {
