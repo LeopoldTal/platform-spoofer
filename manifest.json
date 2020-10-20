@@ -7,7 +7,7 @@
 	"browser_specific_settings": {
 		"gecko": {
 			"id": "platform-spoofer@leopold",
-			"strict_min_version": "48.0"
+			"strict_min_version": "57.0"
 		}
 	},
 
