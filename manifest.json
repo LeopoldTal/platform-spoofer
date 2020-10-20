@@ -4,8 +4,24 @@
 	"version": "0.1",
 	"description": "Fakes navigator.platform",
 
-	"content_scripts": [{
-		"matches": ["*://*/*"],
-		"js": ["platform-spoofer.js"]
-	}]
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "platform-spoofer@leopold",
+			"strict_min_version": "48.0"
+		}
+	},
+
+	"content_scripts": [
+		{
+			"matches": ["*://*/*"],
+			"js": ["platform-spoofer.js"]
+		}
+	],
+
+	"permissions": ["storage"],
+
+	"options_ui": {
+		"page": "options/options.html",
+		"browser_style": true
+	}
 }
