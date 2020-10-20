@@ -10,8 +10,14 @@ function spoofPlatform(platform) {
 	}
 
 	const injectedCode = document.createTextNode(`
-		console.debug('Real platform:', navigator.platform, 'Spoofing platform:', '${platform}');
-		Object.defineProperty(navigator, 'platform', { value: '${platform}', configurable: true });
+		console.debug(
+			'Previous platform:', navigator.platform,
+			'Spoofing platform:', '${platform}'
+		);
+		Object.defineProperty(navigator, 'platform', {
+			value: '${platform}',
+			configurable: true
+		});
 	`);
 	const script = document.createElement('script');
 	script.appendChild(injectedCode);
@@ -21,6 +27,12 @@ function spoofPlatform(platform) {
 
 function main() {
 	getTargetPlatform().then(spoofPlatform);
+
+	browser.storage.onChanged.addListener(({ platform }) => {
+		if (platform && platform.hasOwnProperty('newValue')) {
+			spoofPlatform(platform.newValue);
+		}
+	});
 }
 
 main();
